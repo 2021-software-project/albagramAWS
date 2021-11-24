@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^(Rating_list)/',TemplateView.as_view(template_name='index.html'), name='route'),
     url(r'^(information)/',TemplateView.as_view(template_name='index.html'), name='route'),
     url(r'^(error)/',TemplateView.as_view(template_name='index.html'), name='route'),
-    url('user/password-reset/:uid/:token',TemplateView.as_view(template_name='index.html'), name='index'),
+    url(r'^(password-reset)', TemplateView.as_view(template_name='index.html'), name='password-reset'),
 
     path('user/', include('user.urls')),
     path('user/admin/', admin.site.urls),

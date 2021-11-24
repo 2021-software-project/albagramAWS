@@ -2,7 +2,7 @@ import random
 
 import pandas as pd
 from django.contrib.auth import authenticate
-from django.http import JsonResponse, HttpResponse, Http404
+from django.http import JsonResponse, HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
@@ -149,7 +149,7 @@ class PasswordTokenCheckAPI(generics.GenericAPIView):
 
             if not PasswordResetTokenGenerator().check_token(user,token):
                 return Response({'error':'Token is not valid, please request a new one'},status=status.HTTP_401_UNAUTHORIZED)
-            return Response({'success' : True,'message':'Credentials Valid','uid':uidb64,'token':token},status=status.HTTP_200_OK)
+            return HttpResponseRedirect("/password-reset/{}/{}".format(uidb64,token))
 
         except DjangoUnicodeDecodeError as identifier:
             return Response({'error': 'Token is not valid, please request a new one'}, status=status.HTTP_401_UNAUTHORIZED)

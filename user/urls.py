@@ -21,7 +21,7 @@ urlpatterns = [
     # path('auth/signup/', csrf_exempt(include('rest_auth.registration.urls'))),
     path('auth/signup/', SignupView.as_view(), name='rest-auth.registration.urls'),
     path('request-reset-email/', RequestPasswordResetEmail.as_view(), name='request-reset-email'),
-    path('password-reset/<uidb64>/<token>',PasswordTokenCheckAPI.as_view(), name='password-reset-confirm'),
+    path('password-reset-api/<uidb64>/<token>',PasswordTokenCheckAPI.as_view(), name='password-reset-confirm'),
     path('password-reset-complete/', SetNewPasswordAPIView.as_view(), name='password-reset-complete'),
 
 
